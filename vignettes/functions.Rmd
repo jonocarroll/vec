@@ -1,0 +1,135 @@
+---
+title: "Subsetting via Functions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Subsetting via Functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(vec)
+```
+
+## Functions of 1 argument
+
+We start by defining a vector to be of the new `vec` class
+
+```{r}
+x <- as_vec(1:15)
+x
+```
+
+{vec} provides some helpful vector-operation functions; `is_even(a)` and `is_odd(a)`
+
+```{r}
+is_even(6)
+is_even(7)
+is_odd(7)
+```
+
+These can be used in the regular way
+
+```{r}
+x[is_even(x)]
+```
+
+because this is evaluated first
+
+```{r}
+is_even(x)
+```
+
+producing the logical vector for regular subsetting.
+
+For vectors of class `vec`, you can also specify a formula involving arguments
+
+```{r}
+x[~is_even(x)]
+```
+
+Or, if you wish to refer to the enclosing vector, you can use a `.` placeholder
+
+```{r}
+x[~is_even(.)]
+```
+
+A new syntax is introduced where a bare function can be used with the effect that
+`x[f] == x[f(x)]`
+
+```{r}
+x[is_even]
+x[is_odd]
+```
+
+This function can also be used to replace those values for which `is_even(x) == TRUE`
+
+```{r}
+x[is_even] <- 99
+x
+```
+
+## Functions of more than 1 argument
+
+Resetting the vector
+
+```{r}
+x <- as_vec(1:15)
+x
+```
+
+{vec} also provides a two-argument function `is_divisible_by(a, b)`
+
+```{r}
+is_divisible_by(11, 5)
+is_divisible_by(10, 5)
+is_divisible_by(1:6, 2)
+```
+
+which can be used in the same ways, using explicit arguments
+
+```{r}
+x[is_divisible_by(x, 3)]
+x[~is_divisible_by(x, 3)]
+x[~is_divisible_by(., 3)]
+```
+
+again because this is evaluated first
+
+```{r}
+is_divisible_by(x, 3)
+```
+
+For multiple arguments with a bare function, one option would be to pass named
+arguments to the function via `[`'s `...` argument, e.g.
+
+```{r}
+x[is_divisible_by, n = 3]
+```
+
+but this is somewhat unclean; the `b` refers to the function argument and looks
+too similar to regular `[` subsetting.
+
+Alternatively, curry the function; consume one of the arguments
+
+```{r}
+div3 <- function(aa) {
+  is_divisible_by(aa, n = 3)
+}
+
+x[div3]
+```
+
+This function can also be used to replace those values for which `div3(x) == TRUE`
+
+```{r}
+x[div3] <- 99
+x
+```
