@@ -15,7 +15,7 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-URL: https://github.com/jonocarroll/vec
+URL: https://github.com/jonocarroll/vec, https://jonocarroll.github.io/vec/
 BugReports: https://github.com/jonocarroll/vec/issues
 Imports: 
     rlang
