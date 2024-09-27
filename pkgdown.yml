@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   functions: functions.html
-last_built: 2024-09-27T23:01Z
+last_built: 2024-09-27T23:05Z
 urls:
   reference: https://jonocarroll.github.io/vec/reference
   article: https://jonocarroll.github.io/vec/articles
