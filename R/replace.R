@@ -24,5 +24,5 @@
 #' @method [<-.vec formula
 `[<-.vec.formula` <- function(x, i, value, ...) {
   f <- rlang::as_function(i)
-  x[f, ...]
+  as_vec(x[f, ...])
 }
