@@ -17,3 +17,5 @@ Suggests:
 VignetteBuilder: knitr
 URL: https://github.com/jonocarroll/vec
 BugReports: https://github.com/jonocarroll/vec/issues
+Imports: 
+    rlang
