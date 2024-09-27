@@ -57,7 +57,8 @@ x[is_even] <- 0
 x
 ```
 
-See the vignette for more details.
+See the [vignette](https://jonocarroll.github.io/vec/articles/functions.html)
+for more details.
 
 ### Rotating
 

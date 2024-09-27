@@ -52,7 +52,9 @@ x
 #>  [1] 1 0 3 0 5 0 7 0 9 0
 ```
 
-See the vignette for more details.
+See the
+[vignette](https://jonocarroll.github.io/vec/articles/functions.html)
+for more details.
 
 ### Rotating
 
